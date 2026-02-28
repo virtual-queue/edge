@@ -53,21 +53,26 @@ npx wrangler secret put JWT_SECRET
 npm run deploy
 ```
 
+### Post-deploy: connect to your domain
+
+After deploying, you need to add a **Worker Route** so the worker intercepts traffic on your domain:
+
+1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com) → your domain → **Workers Routes**
+2. Click **Add Route**
+3. Set the route pattern to your domain (e.g. `yourdomain.com/*`)
+4. Select the `edge-queue-connector` worker
+5. Click **Save**
+
+> ⚠️ Your domain must be **proxied through Cloudflare** (orange cloud) for this to work.
+
 ### Configuration
 
-Edit `wrangler.jsonc` to set:
+Edit `wrangler.jsonc` → `vars` to set:
 
 | Variable | Description |
 |---|---|
-| `API_BASE_URL` | Base URL of your queue platform API |
-| `QUEUE_DOMAIN` | Domain for queue service nodes |
+| `QUEUE_DOMAIN` | Your assigned queue subdomain (e.g. `yourcompany.virtual-queue.com`) |
 | `DEBUG_MODE` | Set to `"true"` to enable verbose logging |
-
-Update the `routes` array with your actual domain pattern, and set the `RULES_KV` namespace ID after creating one:
-
-```bash
-npx wrangler kv namespace create RULES_KV
-```
 
 ### API contract
 
