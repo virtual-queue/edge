@@ -74,49 +74,6 @@ Edit `wrangler.jsonc` → `vars` to set:
 | `QUEUE_DOMAIN` | Your assigned queue subdomain (e.g. `yourcompany.virtual-queue.com`) |
 | `DEBUG_MODE` | Set to `"true"` to enable verbose logging |
 
-### API contract
-
-The worker expects your queue platform API to implement these endpoints:
-
-#### `GET /api/v1/edge/config/:domain`
-
-Returns ACL rules for a domain. Requires `Authorization: Bearer <token>`.
-
-```json
-{
-  "data": {
-    "queue_subdomain": "node1",
-    "acls": [
-      {
-        "id": 1,
-        "enabled": true,
-        "priority": 10,
-        "pattern_type": "prefix",
-        "pattern": "/shop",
-        "action": "queue",
-        "event_id": "evt_123"
-      }
-    ]
-  }
-}
-```
-
-#### `POST /api/v1/edge/ingress`
-
-Reports visitor counts. Requires `Authorization: Bearer <token>`.
-
-```json
-{ "event_id": "evt_123", "incoming": 42 }
-```
-
-#### `GET /api/v1/queue/verify?token=<token>`
-
-Verifies a queue completion token.
-
-```json
-{ "success": true, "data": { "token": "abc", "finished_line": true } }
-```
-
 ## License
 
 MIT
