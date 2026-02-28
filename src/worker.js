@@ -152,10 +152,10 @@ async function verify(token, secret) {
 
 // ─── Queue token verification ────────────────────────────────
 
-async function processQueueToken(token, url, env, domain, clientKey, node, console) {
+async function processQueueToken(token, url, env, domain, clientKey, console) {
     console.log(`[QUEUE TOKEN] received token param`);
 
-    const queueApiBaseUrl = `https://${node}.${env.QUEUE_DOMAIN}`;
+    const queueApiBaseUrl = `https://${env.QUEUE_DOMAIN}`;
     const redirectTarget = `${url.protocol}//${domain}${url.pathname}`;
 
     const verifyUrl = new URL("/api/v1/queue/verify", queueApiBaseUrl);
@@ -244,9 +244,7 @@ export default {
         // 1) Handle ?token= callback from queue
         const token = url.searchParams.get("token");
         if (token) {
-            const rules = await fetchACL(domain, env, console);
-            const node = rules?.queue_subdomain;
-            return processQueueToken(token, url, env, domain, clientKey, node, console);
+            return processQueueToken(token, url, env, domain, clientKey, console);
         }
 
         // 2) Load ACL rules for this domain
@@ -290,7 +288,7 @@ export default {
         ctx.waitUntil(reportIngress(rule.event_id, env));
 
         // 6) Redirect to waiting room
-        const waitUrl = `https://${rules.queue_subdomain}.${env.QUEUE_DOMAIN}/queue/${rule.event_id}`;
+        const waitUrl = `https://${env.QUEUE_DOMAIN}/queue/${rule.event_id}`;
         console.log(`[REDIRECT] → ${waitUrl}`);
         return Response.redirect(waitUrl, 302);
     },
