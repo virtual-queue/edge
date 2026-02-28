@@ -1,0 +1,31 @@
+{
+    "name": "edge-queue-connector",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "deploy": "npx wrangler deploy",
+        "dev": "npx wrangler dev"
+    },
+    "devDependencies": {
+        "wrangler": "^4.0.0"
+    },
+    "cloudflare": {
+        "bindings": {
+            "EDGE_INGRESS_TOKEN": {
+                "description": "Bearer token for authenticating with your queue platform API. You will receive this from your queue platform dashboard."
+            },
+            "JWT_SECRET": {
+                "description": "Random secret used to sign bypass cookies. Generate one with `openssl rand -hex 32`."
+            },
+            "RULES_KV": {
+                "description": "KV namespace used to cache ACL rules per domain. A new namespace will be created automatically."
+            },
+            "API_BASE_URL": {
+                "description": "Base URL of your queue platform API (e.g. `https://api.example.com`)."
+            },
+            "QUEUE_DOMAIN": {
+                "description": "Domain where your queue service is hosted. Queue nodes are resolved as `https://{node}.{QUEUE_DOMAIN}`."
+            }
+        }
+    }
+}
