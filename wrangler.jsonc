@@ -8,23 +8,19 @@
     },
     "vars": {
         "DEBUG_MODE": "false",
-        // Base URL of your queue platform API (e.g. https://api.example.com)
-        "API_BASE_URL": "https://api.example.com",
-        // Domain where your queue service is hosted (e.g. example.com)
-        // Queue subdomains are built as: https://{node}.{QUEUE_DOMAIN}
-        "QUEUE_DOMAIN": "example.com"
+        "API_BASE_URL": "https://clients.virtual-queue.com"
     },
     "kv_namespaces": [
         {
             "binding": "RULES_KV",
             "id": "<YOUR_KV_NAMESPACE_ID>"
         }
-    ],
-    "routes": [
-        {
-            // Replace with your actual domain pattern
-            "pattern": "your-subdomain.example.com/*",
-            "zone_name": "example.com"
-        }
     ]
+    // After deploying, add your routes here:
+    // "routes": [
+    //     {
+    //         "pattern": "your-domain.com/*",
+    //         "zone_name": "your-domain.com"
+    //     }
+    // ]
 }

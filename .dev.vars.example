@@ -3,3 +3,6 @@ EDGE_INGRESS_TOKEN=your-api-token-here
 
 # Secret for signing bypass cookies (generate with: openssl rand -hex 32)
 JWT_SECRET=your-jwt-secret-here
+
+# Your assigned queue subdomain (e.g. yourcompany.virtual-queue.com)
+QUEUE_DOMAIN=yourcompany.virtual-queue.com

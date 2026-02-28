@@ -20,11 +20,8 @@
             "RULES_KV": {
                 "description": "KV namespace used to cache ACL rules per domain. A new namespace will be created automatically."
             },
-            "API_BASE_URL": {
-                "description": "Base URL of your queue platform API (e.g. `https://api.example.com`)."
-            },
             "QUEUE_DOMAIN": {
-                "description": "Domain where your queue service is hosted. Queue nodes are resolved as `https://{node}.{QUEUE_DOMAIN}`."
+                "description": "Domain where your queue service is hosted. Queue nodes are resolved as `https://your_company.virtual-queue.com`."
             }
         }
     }
