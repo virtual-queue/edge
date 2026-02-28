@@ -2,7 +2,7 @@
 
 A Cloudflare Worker that acts as an edge-level gateway for virtual queue platforms. It intercepts incoming requests, evaluates ACL rules, and redirects visitors to a waiting room when needed — all at the edge, with minimal latency.
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/YOUR_ORG/edge-queue-connector)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/virtual-queue/edge)
 
 ## How it works
 
@@ -39,8 +39,8 @@ Click the **Deploy to Cloudflare** button above, or deploy manually:
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_ORG/edge-queue-connector.git
-cd edge-queue-connector
+git clone https://github.com/virtual-queue/edge.git
+cd edge
 
 # Install dependencies
 npm install
